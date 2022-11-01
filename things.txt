@@ -1,0 +1,5 @@
+tutorial to get started:
+https://dev.to/nagatodev/how-to-connect-flask-to-reactjs-1k8i 
+stuff added to package.json 
+"start-backend": "cd backend && env/bin/flask run --no-debugger",
+"proxy": "http://localhost:5000", 
