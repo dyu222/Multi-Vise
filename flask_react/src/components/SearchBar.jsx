@@ -1,5 +1,5 @@
 import './SearchBar.css'
-import ResultList from "./Result"
+import Result from "./Result"
 // import redditResponse from '../App'
 // import redditResponse from '../../src/App'
 async function redditResponse(s){
@@ -66,7 +66,7 @@ const SearchBar = () => (
         {/* <button className='submit-button' type="submit" Onclick={this.getVal}>Submit</button> */}
         {/* <button id="subButton" className='submit-button' type="submit" onlick='getVal()'>Submit</button> */}
         <button id="subButton" className='submit-button' type="submit" onClick={getVal}>Submit</button>
-        <ResultList results={getVal}/>
+        <Result results={getVal}/>
     </div>
 
 );
