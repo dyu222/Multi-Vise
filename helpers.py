@@ -25,6 +25,7 @@ def search_reddit(s):
 print(search_reddit('Life is hard?'))
 
 API_URL = "https://api-inference.huggingface.co/models/sentence-transformers/all-MiniLM-L6-v2"
+API_URL_passage = "https://api-inference.huggingface.co/models/sentence-transformers/msmarco-distilbert-base-tas-b"
 api_token = "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"
 headers = {"Authorization": f"Bearer {api_token}"}
 
@@ -37,6 +38,22 @@ def similarity (source_sentence, other_sentences):
     }
     response = requests.post(API_URL, headers=headers, json = query)
     return response.json()
+
+def passage_ranking(source_query, other_texts):
+    query = {"inputs": {
+                "source_sentence": source_query,
+                "sentences": other_texts
+            }
+        }
+    response = requests.post(API_URL, headers=headers, json=query)
+    return response.json()
+
+data = passage_ranking("That is a happy person",[
+                "That is a happy dog",
+                "That is a very happy person",
+                "Today is a sunny day"
+            ])
+print(data)
 
 data = similarity("I'm very happy", ["I'm filled with happiness", "I'm happy"])
 
