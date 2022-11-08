@@ -75,8 +75,8 @@ def search_reddit(s):
         print(post.comments)
         print(post.comments[0].body)
         print(post.permalink)
-        if len(post.comments) == 1:
-            base = post.comments[0]
+        if len(post.comments) == 1 or len(post.comments) == 2:
+            base = post.comments[-1]
             pol_score = sia.polarity_scores(base.body)
             comments.append({'post' : post.title, 'text': base.body, 'score': base.score, 'sen_score': pol_score})
             continue
