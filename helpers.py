@@ -50,7 +50,7 @@ def search_reddit(s):
 
     sia = SentimentIntensityAnalyzer()
     subreddit = reddit.subreddit('relationship_advice')
-    posts = subreddit.search("s", limit = 10)
+    posts = subreddit.search(s, limit = 10)
     new_posts = []
     text = []
     for post in posts:
@@ -72,7 +72,16 @@ def search_reddit(s):
 
     comments = []
     for post in selected_posts:
-        base = post.comments[1]
+        print(post.comments)
+        print(post.comments[0].body)
+        print(post.permalink)
+        if len(post.comments) == 1:
+            base = post.comments[0]
+            pol_score = sia.polarity_scores(base.body)
+            comments.append({'post' : post.title, 'text': base.body, 'score': base.score, 'sen_score': pol_score})
+            continue
+        else:
+            base = post.comments[1]
         pol_score = sia.polarity_scores(base.body)
         comments.append({'post' : post.title, 'text': base.body, 'score': base.score, 'sen_score': pol_score})
         other_comments = []
@@ -81,6 +90,8 @@ def search_reddit(s):
             other_comments.append(comment.body)
             score.append(comment.score)
         sim = similarity(base.body, other_comments)
+        print(numpy.argmin(sim))
+        print(other_comments)
         second = other_comments[numpy.argmin(sim)]
         pol_score = sia.polarity_scores(second)
         comments.append({'post' : post.title, 'text': second, 'score': score[numpy.argmin(sim)], 'sen_score': pol_score})
@@ -90,8 +101,8 @@ def search_reddit(s):
 
 inp = input("Ask questions \n")
 
-#print(search_reddit('I am having a toxic relationship. Should I break up?'))
-print(search_reddit(inp))
+print(search_reddit('I am having a toxic relationship. Should I break up?'))
+#print(search_reddit(inp))
 
 
 
