@@ -1,9 +1,14 @@
 from flask import Flask, request
 import requests
 # import flask_react.backend.helpers as helpers
-import helpers
+import os
+import sys
+# sys.path.append(os.path.abspath(os.path.join('', 'helpers')))
+# import helpers
+sys.path.append('./')
+from helpers import *
 
-helpers.similarity("hello", ["hello", "hi", "hey"])
+# helpers.similarity("hello", ["hello", "hi", "hey"])
 
 api = Flask(__name__)
 
