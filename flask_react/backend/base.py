@@ -1,4 +1,9 @@
-from flask import Flask
+from flask import Flask, request
+import requests
+# import flask_react.backend.helpers as helpers
+import helpers
+
+helpers.similarity("hello", ["hello", "hi", "hey"])
 
 api = Flask(__name__)
 
@@ -10,3 +15,13 @@ def my_profile():
     }
 
     return response_body
+
+@api.route('/reddit', methods=['POST']) 
+def reddit():
+    data = request.data
+    #call the helper here ig
+    # make this a post request, data can be 
+    #hopefully this should work once we setup up front end and path stuff.
+    return search_reddit(data)
+    output = None
+    return output
