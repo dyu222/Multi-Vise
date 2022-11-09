@@ -1,11 +1,11 @@
 from flask import Flask, request
 import requests
 # import flask_react.backend.helpers as helpers
-import os
-import sys
+# import os
+# import sys
 # sys.path.append(os.path.abspath(os.path.join('', 'helpers')))
 # import helpers
-sys.path.append('./')
+# sys.path.append('./')
 from helpers import *
 
 # helpers.similarity("hello", ["hello", "hi", "hey"])
