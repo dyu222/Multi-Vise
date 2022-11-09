@@ -1,5 +1,7 @@
 import './SearchBar.css'
 import Result from "./Result"
+import axios from "axios";
+
 
 function getResults(question) {
   axios({
