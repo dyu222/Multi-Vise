@@ -20,6 +20,6 @@ def reddit():
     #call the helper here ig
     # make this a post request, data can be 
     #hopefully this should work once we setup up front end and path stuff.
-    output = search_reddit('hello')
+    output = search_reddit(data)
     # print(output)
     return {"data":output}
