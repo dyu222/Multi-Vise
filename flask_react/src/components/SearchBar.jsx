@@ -27,7 +27,7 @@ async function getVal(){
 const SearchBar = () => (
 
     <div className="search-container">
-        <input id="questionField" type="text" placeholder="Ask for advice..."></input>
+        <textarea id="questionField" type="text" placeholder="Ask for advice..." cols="40" rows="5"></textarea>
         <button id="subButton" className='submit-button' type="submit" onClick={getVal}>Submit</button>
         <Result results={getVal}/>
     </div>
