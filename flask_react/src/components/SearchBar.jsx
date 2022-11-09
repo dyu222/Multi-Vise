@@ -4,12 +4,9 @@ import axios from "axios";
 
 
 function getResults(question) {
-  axios({
-    method: "POST",
-    url:"/reddit",
-    data:question,
-  })
+  axios.post('http://127.0.0.1:5000/reddit', {'query':question})
   .then((response) => {
+    console.log(response.data)
     const res = response.data
   }).catch((error) => {
     if (error.response) {

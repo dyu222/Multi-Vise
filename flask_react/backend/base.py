@@ -8,25 +8,18 @@ import sys
 sys.path.append('./')
 from helpers import *
 
-# helpers.similarity("hello", ["hello", "hi", "hey"])
+from flask_cors import CORS
+app = Flask(__name__)
+CORS(app)
 
-api = Flask(__name__)
 
-@api.route('/profile')
-def my_profile():
-    response_body = {
-        "name": "Nagato",
-        "about" :"Hello! I'm a full stack developer that loves python and javascript"
-    }
-
-    return response_body
-
-@api.route('/reddit', methods=['POST']) 
+@app.route('/reddit', methods=['POST']) 
 def reddit():
-    data = request.data
+    data = request.json['query']
+    print(data)
     #call the helper here ig
     # make this a post request, data can be 
     #hopefully this should work once we setup up front end and path stuff.
-    output = search_reddit(data)
-    print(output)
-    return output
+    output = search_reddit('hello')
+    # print(output)
+    return {"data":output}
