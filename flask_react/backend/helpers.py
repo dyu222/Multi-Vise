@@ -40,6 +40,46 @@ def passage_ranking(source_query, other_texts):
     response = requests.post(API_URL, headers=headers, json=query)
     return response.json()
 
+def analyze_posts(posts):
+    sia = SentimentIntensityAnalyzer()
+    advice = []
+    for post in posts:
+        comments_text = []
+        comments = post['comments']
+        for comment in comments:
+            comments_text.append(comment['text'])
+
+        similar_advice_score = similarity("You should and would do this", comments_text)
+        filtered_comments = []
+        for i in range(len(comments)):
+            if similar_advice_score[i] > 0.08:
+                filtered_comments.append(comments[i])
+        
+        if len(filtered_comments) == 1:
+            pol_score = sia.polarity_scores(filtered_comments[0]['text'])
+            advice.append({'post' : post['title'], 'text': filtered_comments[0]['text'], 'score': filtered_comments[0]['score'], 'sen_score': pol_score})
+        if len(filtered_comments) > 1:
+            pol_score = sia.polarity_scores(filtered_comments[0]['text'])
+            advice.append({'post' : post['title'], 'text': filtered_comments[0]['text'], 'score': filtered_comments[0]['score'], 'sen_score': pol_score})
+            other_comments = []
+            for c in filtered_comments[1:]:
+                other_comments.append(c['text'])
+            sim = similarity(filtered_comments[0]['text'], other_comments)
+            second = numpy.argmin(sim) + 1 
+            pol_score = sia.polarity_scores(filtered_comments[second]['text'])
+            advice.append({'post' : post['title'], 'text': filtered_comments[second]['text'], 'score': filtered_comments[second]['score'], 'sen_score': pol_score})
+    
+    print(advice)
+    return advice
+            
+
+
+
+
+
+
+
+
 '''
 For testing purposes and helper functions
 '''

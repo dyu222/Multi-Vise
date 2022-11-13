@@ -15,11 +15,11 @@ CORS(app)
 
 @app.route('/reddit', methods=['POST']) 
 def reddit():
-    data = request.json['query']
+    data = request.json
     print(data)
     #call the helper here ig
     # make this a post request, data can be 
     #hopefully this should work once we setup up front end and path stuff.
-    output = search_reddit(data)
-    # print(output)
-    return {"data":output}
+    res = analyze_posts(data)
+    print(res)
+    return res
