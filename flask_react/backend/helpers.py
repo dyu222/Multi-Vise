@@ -14,6 +14,7 @@ from nltk.sentiment.vader import SentimentIntensityAnalyzer
 import json
 import requests
 import numpy
+from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
 
 
 API_URL = "https://api-inference.huggingface.co/models/sentence-transformers/all-MiniLM-L6-v2"
@@ -40,19 +41,24 @@ def passage_ranking(source_query, other_texts):
     response = requests.post(API_URL, headers=headers, json=query)
     return response.json()
 
-def analyze_posts(posts):
+def analyze_posts(question, posts):
     sia = SentimentIntensityAnalyzer()
     advice = []
+    bot_advice = get_bot_answer(question)
+    sentiment = sia.polarity_scores(bot_advice)
+    advice.append({'post' : 'bot advice', 'text': bot_advice, 'score': 0, 'sen_score': sentiment})
+
+
     for post in posts:
         comments_text = []
         comments = post['comments']
         for comment in comments:
             comments_text.append(comment['text'])
 
-        similar_advice_score = similarity("You should and would do this", comments_text)
+        similar_advice_score = similarity("You should, would, could, do this", comments_text)
         filtered_comments = []
         for i in range(len(comments)):
-            if similar_advice_score[i] > 0.08:
+            if similar_advice_score[i] > 0.07:
                 filtered_comments.append(comments[i])
         
         if len(filtered_comments) == 1:
@@ -72,7 +78,15 @@ def analyze_posts(posts):
     print(advice)
     return advice
             
+def get_bot_answer(question):
+    mname = "facebook/blenderbot-400M-distill"
+    model = BlenderbotForConditionalGeneration.from_pretrained(mname)
+    tokenizer = BlenderbotTokenizer.from_pretrained(mname)
+    UTTERANCE = "My relationship is toxic and unhealthy. Should i break up with my girlfriend?"
 
+    inputs = tokenizer([UTTERANCE], return_tensors="pt")
+    reply_ids = model.generate(**inputs, max_new_tokens=200)
+    return tokenizer.batch_decode(reply_ids, skip_special_tokens=True)[0]
 
 
 

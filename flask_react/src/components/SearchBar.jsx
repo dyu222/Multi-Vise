@@ -25,7 +25,7 @@ async function searchReddit(question) {
     let curr_comments = [];
 
     post_comments.forEach(async (comment)=>{
-      if (await comment.author.name !== 'AutoModerator'){
+      if ((await comment.author.name !== 'AutoModerator') && (comment.body !== '[deleted]')){
         curr_comments.push({
           text: await comment.body,
           score: await comment.score,
@@ -51,8 +51,9 @@ async function searchReddit(question) {
 }
 
 async function getResults(question){
-  let data = await searchReddit(question)
-  axios.post('http://127.0.0.1:5000/reddit', data)
+  let result = await searchReddit(question)
+
+  axios.post('http://127.0.0.1:5000/reddit', {query: question, data: result})
   .then((response) => {
     console.log(response.data)
     const res = response.data
