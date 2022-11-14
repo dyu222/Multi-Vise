@@ -46,7 +46,7 @@ async function searchReddit(question) {
   })
   console.log(data.length)
   const delay = ms => new Promise(res => setTimeout(res, ms));
-  await delay(4000);
+  await delay(6000);
   return data
 }
 
