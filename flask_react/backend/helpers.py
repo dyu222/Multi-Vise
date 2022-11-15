@@ -82,7 +82,7 @@ def get_bot_answer(question):
     mname = "facebook/blenderbot-400M-distill"
     model = BlenderbotForConditionalGeneration.from_pretrained(mname)
     tokenizer = BlenderbotTokenizer.from_pretrained(mname)
-    UTTERANCE = "My relationship is toxic and unhealthy. Should i break up with my girlfriend?"
+    UTTERANCE = question
 
     inputs = tokenizer([UTTERANCE], return_tensors="pt")
     reply_ids = model.generate(**inputs, max_new_tokens=200)
