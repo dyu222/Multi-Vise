@@ -116,7 +116,7 @@ const SearchBar = () => (
           <h3 id="score2" style={{margin:'0.25%'}}>{score2}</h3>
         </div>
         <div style={{display:'flex', flexDirection:'column', border:'2px solid black', width:'70%', marginLeft:'15%', marginRight:'15%',marginBottom:'2%'}}>
-          <h1 id="res3" style={{margin:'0.25%'}}>Load Times are Currently ~10 seconds{res3}</h1>
+          <h1 id="res3" style={{margin:'0.25%'}}>Load Times are ~10 seconds{res3}</h1>
           <h3 id="score3" style={{margin:'0.25%'}}>{score3}</h3>
         </div>
     </div>
