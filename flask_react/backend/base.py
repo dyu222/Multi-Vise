@@ -22,4 +22,5 @@ def reddit():
     #hopefully this should work once we setup up front end and path stuff.
     res = analyze_posts(question, data)
     print(res)
-    return res
+    return {'result': res}
+
