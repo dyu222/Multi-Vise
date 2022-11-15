@@ -1,4 +1,4 @@
-certifi @ file:///C:/b/abs_ac29jvt43w/croot/certifi_1665076682579/work/certifi
+certifi #@ file:///C:/b/abs_ac29jvt43w/croot/certifi_1665076682579/work/certifi
 charset-normalizer==2.1.1
 torch==1.13.0
 click==8.1.3
