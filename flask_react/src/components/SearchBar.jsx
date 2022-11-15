@@ -1,5 +1,4 @@
 import './SearchBar.css'
-import Result from "./Result"
 import axios from "axios";
 
 
@@ -49,7 +48,13 @@ async function searchReddit(question) {
   await delay(6000);
   return data
 }
-var res; // global variable to store results
+// global variables to store results
+var res1;
+var res2;
+var res3;
+var score1;
+var score2;
+var score3;
 
 
 async function getResults(question){
@@ -58,7 +63,13 @@ async function getResults(question){
   await axios.post('http://127.0.0.1:5000/reddit', {query: question, data: result})
   .then((response) => {
     console.log(response.data)
-    res = response.data.result[0].text
+    res1 = response.data.result[0].text
+    res2 = response.data.result[1].text
+    res3 = response.data.result[2].text
+    score1 = response.data.result[0].sen_score.compound
+    score2 = response.data.result[1].sen_score.compound
+    score3 = response.data.result[2].sen_score.compound
+
   }).catch((error) => {
     if (error.response) {
       console.log(error.response)
@@ -68,8 +79,19 @@ async function getResults(question){
   })
   // const delay = ms => new Promise(res => setTimeout(res, ms));
   // await delay(20000);
-  console.log(res)
-  document.getElementById("test").innerHTML = res
+  console.log(res1)
+  console.log(res2)
+  console.log(res3)
+  console.log(score1)
+  console.log(score2)
+  console.log(score3)
+
+  document.getElementById("res1").innerHTML = 'Advice #1: ' + res1
+  document.getElementById("score1").innerHTML = 'Sentiment Score: ' + score1
+  document.getElementById("res2").innerHTML = 'Advice #2: ' + res2
+  document.getElementById("score2").innerHTML = 'Sentiment Score: ' + score2
+  document.getElementById("res3").innerHTML = 'Advice #3: ' + res3
+  document.getElementById("score3").innerHTML = 'Sentiment Score: ' + score3
   //document.getElementById("result").setAttribute('results', [])
 }
 
@@ -84,9 +106,19 @@ const SearchBar = () => (
 
     <div className="search-container">
         <textarea id="questionField" type="text" placeholder="Ask for advice..." cols="40" rows="5"></textarea>
-        <button id="subButton" className='submit-button' type="submit" onClick={getVal}>Submit</button>
-        {/* <Result id="result" results={res}/> */}
-        <h1 id="test">{res}</h1>
+        <button id="subButton" className='submit-button' type="submit" onClick={getVal} style={{marginBottom:'2%'}}>Submit</button>
+        <div style={{display:'flex', flexDirection:'column', border:'2px solid black', width:'70%', marginLeft:'15%', marginRight:'15%',marginBottom:'2%'}}>
+          <h1 id="res1" style={{margin:'0.25%'}}>No Advice Loaded{res1}</h1>
+          <h3 id="score1" style={{margin:'0.25%'}}>{score1}</h3>
+        </div>
+        <div style={{display:'flex', flexDirection:'column', border:'2px solid black', width:'70%', marginLeft:'15%', marginRight:'15%',marginBottom:'2%'}}>
+          <h1 id="res2" style={{margin:'0.25%'}}>Please Type a Relationship Question and Click Submit{res2}</h1>
+          <h3 id="score2" style={{margin:'0.25%'}}>{score2}</h3>
+        </div>
+        <div style={{display:'flex', flexDirection:'column', border:'2px solid black', width:'70%', marginLeft:'15%', marginRight:'15%',marginBottom:'2%'}}>
+          <h1 id="res3" style={{margin:'0.25%'}}>Load Times are Currently ~10 seconds{res3}</h1>
+          <h3 id="score3" style={{margin:'0.25%'}}>{score3}</h3>
+        </div>
     </div>
 
 );

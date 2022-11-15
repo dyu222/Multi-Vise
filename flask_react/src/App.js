@@ -1,14 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 import SearchBar from './components/SearchBar'
-import Result from './components/Result'
 
 function App() {
   return (
     <div className="App">
-      <h1>Multi-vise</h1>
+      <h1>Multi-vise: The AI Relationship Guru</h1>
       <SearchBar/>
-      <Result/>
     </div>
   );
 }
