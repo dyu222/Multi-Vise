@@ -41,10 +41,10 @@ def passage_ranking(source_query, other_texts):
     response = requests.post(API_URL, headers=headers, json=query)
     return response.json()
 
-def analyze_posts(question, posts):
+def analyze_posts(question, posts, model, tokenizer):
     sia = SentimentIntensityAnalyzer()
     advice = []
-    bot_advice = get_bot_answer(question)
+    bot_advice = get_bot_answer(model, tokenizer, question)
     sentiment = sia.polarity_scores(bot_advice)
     advice.append({'post' : 'bot advice', 'text': bot_advice, 'score': 0, 'sen_score': sentiment})
 
@@ -78,10 +78,10 @@ def analyze_posts(question, posts):
     print(advice)
     return advice
             
-def get_bot_answer(question):
-    mname = "facebook/blenderbot-400M-distill"
-    model = BlenderbotForConditionalGeneration.from_pretrained(mname)
-    tokenizer = BlenderbotTokenizer.from_pretrained(mname)
+def get_bot_answer(model, tokenizer, question):
+    # mname = "facebook/blenderbot-400M-distill"
+    # model = BlenderbotForConditionalGeneration.from_pretrained(mname)
+    # tokenizer = BlenderbotTokenizer.from_pretrained(mname)
     UTTERANCE = question
 
     inputs = tokenizer([UTTERANCE], return_tensors="pt")

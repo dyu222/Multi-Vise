@@ -12,6 +12,10 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
+mname = "facebook/blenderbot-400M-distill"
+model = BlenderbotForConditionalGeneration.from_pretrained(mname)
+tokenizer = BlenderbotTokenizer.from_pretrained(mname)
+
 
 @app.route('/reddit', methods=['POST']) 
 def reddit():
@@ -20,7 +24,7 @@ def reddit():
     #call the helper here ig
     # make this a post request, data can be 
     #hopefully this should work once we setup up front end and path stuff.
-    res = analyze_posts(question, data)
+    res = analyze_posts(question, data, model, tokenizer)
     print(res)
     return {'result': res}
 
