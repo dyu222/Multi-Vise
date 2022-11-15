@@ -107,18 +107,18 @@ const SearchBar = () => (
     <div className="search-container">
         <textarea id="questionField" type="text" placeholder="Ask for advice..." cols="40" rows="5"></textarea>
         <button id="subButton" className='submit-button' type="submit" onClick={getVal} style={{marginBottom:'2%'}}>Submit</button>
-        <div style={{display: 'flex'}}>
+        <div style={{display: 'flex', marginTop: '50px'}}>
           <div style={{display:'flex', flexDirection:'column', border:'2px solid black', width:'30%', marginLeft:'2%', marginRight:'2%',marginBottom:'2%'}}>
-            <h1 id="res1" style={{margin:'0.25%'}}>No Advice Loaded{res1}</h1>
-            <h3 id="score1" style={{margin:'0.25%'}}>{score1}</h3>
+            <h1 id="res1" style={{margin:'0.25%', fontWeight:'400'}}>No Advice Loaded{res1}</h1>
+            <h3 id="score1" style={{margin:'0.25%', fontWeight:'200', marginTop: 'auto'}}>{score1}</h3>
           </div>
           <div style={{display:'flex', flexDirection:'column', border:'2px solid black', width:'30%', marginLeft:'2%', marginRight:'2%',marginBottom:'2%'}}>
-            <h1 id="res2" style={{margin:'0.25%'}}>Please Type a Relationship Question and Click Submit{res2}</h1>
-            <h3 id="score2" style={{margin:'0.25%'}}>{score2}</h3>
+            <h1 id="res2" style={{margin:'0.25%', fontWeight:'400'}}>Please Type a Relationship Question and Click Submit{res2}</h1>
+            <h3 id="score2" style={{margin:'0.25%', fontWeight:'200', marginTop: 'auto'}}>{score2}</h3>
           </div>
           <div style={{display:'flex', flexDirection:'column', border:'2px solid black', width:'30%', marginLeft:'2%', marginRight:'2%',marginBottom:'2%'}}>
-            <h1 id="res3" style={{margin:'0.25%'}}>Load Times are ~10 seconds{res3}</h1>
-            <h3 id="score3" style={{margin:'0.25%'}}>{score3}</h3>
+            <h1 id="res3" style={{margin:'0.25%', fontWeight:'400'}}>Load Times are ~10 seconds{res3}</h1>
+            <h3 id="score3" style={{margin:'0.25%', fontWeight:'200', marginTop: 'auto'}}>{score3}</h3>
           </div>
         </div>
     </div>
