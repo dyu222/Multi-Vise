@@ -49,15 +49,16 @@ async function searchReddit(question) {
   await delay(6000);
   return data
 }
-var res = "Test"; // global variable to store results
+var res; // global variable to store results
+
+
 async function getResults(question){
   let result = await searchReddit(question)
   
   await axios.post('http://127.0.0.1:5000/reddit', {query: question, data: result})
   .then((response) => {
     console.log(response.data)
-    // res = response.data
-    res = "Hello"
+    res = response.data.result[0].text
   }).catch((error) => {
     if (error.response) {
       console.log(error.response)
@@ -69,6 +70,7 @@ async function getResults(question){
   // await delay(20000);
   console.log(res)
   document.getElementById("test").innerHTML = res
+  //document.getElementById("result").setAttribute('results', [])
 }
 
 async function getVal(){
@@ -83,8 +85,7 @@ const SearchBar = () => (
     <div className="search-container">
         <textarea id="questionField" type="text" placeholder="Ask for advice..." cols="40" rows="5"></textarea>
         <button id="subButton" className='submit-button' type="submit" onClick={getVal}>Submit</button>
-        <Result results={res}/>
-        console.log({res})
+        {/* <Result id="result" results={res}/> */}
         <h1 id="test">{res}</h1>
     </div>
 
