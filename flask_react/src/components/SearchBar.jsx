@@ -52,9 +52,15 @@ async function searchReddit(question) {
 var res1;
 var res2;
 var res3;
+var res4;
+var res5;
+var res6;
 var score1;
 var score2;
 var score3;
+var score4;
+var score5;
+var score6;
 
 
 async function getResults(question){
@@ -66,9 +72,15 @@ async function getResults(question){
     res1 = response.data.result[0].text
     res2 = response.data.result[1].text
     res3 = response.data.result[2].text
+    res4 = response.data.result[3].text
+    res5 = response.data.result[4].text
+    res6 = response.data.result[5].text
     score1 = response.data.result[0].sen_score.compound
     score2 = response.data.result[1].sen_score.compound
     score3 = response.data.result[2].sen_score.compound
+    score4 = response.data.result[3].sen_score.compound
+    score5 = response.data.result[4].sen_score.compound
+    score6 = response.data.result[5].sen_score.compound
 
   }).catch((error) => {
     if (error.response) {
@@ -82,9 +94,11 @@ async function getResults(question){
   console.log(res1)
   console.log(res2)
   console.log(res3)
+  console.log(res4)
   console.log(score1)
   console.log(score2)
   console.log(score3)
+  console.log(score4)
 
   document.getElementById("res1").innerHTML = res1
   //'Advice #1: ' + res1
@@ -95,6 +109,13 @@ async function getResults(question){
   document.getElementById("res3").innerHTML = res3
   //'Advice #3: ' + res3
   document.getElementById("score3").innerHTML = 'Sentiment Score: ' + score3
+  
+  document.getElementById("res4").innerHTML = res4
+  document.getElementById("score4").innerHTML = 'Sentiment Score: ' + score4
+  document.getElementById("res5").innerHTML = res5
+  document.getElementById("score5").innerHTML = 'Sentiment Score: ' + score5
+  document.getElementById("res6").innerHTML = res6
+  document.getElementById("score6").innerHTML = 'Sentiment Score: ' + score6
   //document.getElementById("result").setAttribute('results', [])
 }
 
@@ -127,6 +148,26 @@ const SearchBar = () => (
           <div style={{display:'flex', flexDirection:'column', border:'2px solid black', width:'30%', marginLeft:'2%', marginRight:'2%',marginBottom:'2%'}}>
             <h1 id="res3" style={{margin:'0.25%', fontWeight:'400'}}>Load Times are ~10 seconds{res3}</h1>
             <h3 id="score3" style={{margin:'0.25%', fontWeight:'200', marginTop: 'auto'}}>{score3}</h3>
+          </div>
+        </div>
+
+        <div style={{display: 'flex', marginTop: '50px', fontWeight: 'bold', fontSize: '25px'}}>
+          <div style={{marginLeft: '135px', marginRight: '265px'}}>Advice #4:</div>
+          <div style={{marginRight: '260px'}}>Advice #5:</div>
+          <div style={{}}>Advice #6:</div>
+        </div>
+        <div style={{display: 'flex', marginTop: '20px'}}>
+          <div style={{display:'flex', flexDirection:'column', border:'2px solid black', width:'30%', marginLeft:'2%', marginRight:'2%',marginBottom:'2%'}}>
+            <h1 id="res4" style={{margin:'0.25%', fontWeight:'400'}}>No Advice Loaded{res1}</h1>
+            <h3 id="score4" style={{margin:'0.25%', fontWeight:'200', marginTop: 'auto'}}>{score1}</h3>
+          </div>
+          <div style={{display:'flex', flexDirection:'column', border:'2px solid black', width:'30%', marginLeft:'2%', marginRight:'2%',marginBottom:'2%'}}>
+            <h1 id="res5" style={{margin:'0.25%', fontWeight:'400'}}>Please Type a Relationship Question and Click Submit{res2}</h1>
+            <h3 id="score5" style={{margin:'0.25%', fontWeight:'200', marginTop: 'auto'}}>{score2}</h3>
+          </div>
+          <div style={{display:'flex', flexDirection:'column', border:'2px solid black', width:'30%', marginLeft:'2%', marginRight:'2%',marginBottom:'2%'}}>
+            <h1 id="res6" style={{margin:'0.25%', fontWeight:'400'}}>Load Times are ~10 seconds{res3}</h1>
+            <h3 id="score6" style={{margin:'0.25%', fontWeight:'200', marginTop: 'auto'}}>{score3}</h3>
           </div>
         </div>
     </div>
