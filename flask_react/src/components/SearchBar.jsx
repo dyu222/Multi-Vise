@@ -86,11 +86,14 @@ async function getResults(question){
   console.log(score2)
   console.log(score3)
 
-  document.getElementById("res1").innerHTML = 'Advice #1: ' + res1
+  document.getElementById("res1").innerHTML = res1
+  //'Advice #1: ' + res1
   document.getElementById("score1").innerHTML = 'Sentiment Score: ' + score1
-  document.getElementById("res2").innerHTML = 'Advice #2: ' + res2
+  document.getElementById("res2").innerHTML = res2
+  //'Advice #2: ' + res2
   document.getElementById("score2").innerHTML = 'Sentiment Score: ' + score2
-  document.getElementById("res3").innerHTML = 'Advice #3: ' + res3
+  document.getElementById("res3").innerHTML = res3
+  //'Advice #3: ' + res3
   document.getElementById("score3").innerHTML = 'Sentiment Score: ' + score3
   //document.getElementById("result").setAttribute('results', [])
 }
@@ -107,7 +110,12 @@ const SearchBar = () => (
     <div className="search-container">
         <textarea id="questionField" type="text" placeholder="Ask for advice..." cols="40" rows="5"></textarea>
         <button id="subButton" className='submit-button' type="submit" onClick={getVal} style={{marginBottom:'2%'}}>Submit</button>
-        <div style={{display: 'flex', marginTop: '50px'}}>
+        <div style={{display: 'flex', marginTop: '50px', fontWeight: 'bold', fontSize: '25px'}}>
+          <div style={{marginLeft: '135px', marginRight: '265px'}}>Advice #1:</div>
+          <div style={{marginRight: '260px'}}>Advice #2:</div>
+          <div style={{}}>Advice #3:</div>
+        </div>
+        <div style={{display: 'flex', marginTop: '20px'}}>
           <div style={{display:'flex', flexDirection:'column', border:'2px solid black', width:'30%', marginLeft:'2%', marginRight:'2%',marginBottom:'2%'}}>
             <h1 id="res1" style={{margin:'0.25%', fontWeight:'400'}}>No Advice Loaded{res1}</h1>
             <h3 id="score1" style={{margin:'0.25%', fontWeight:'200', marginTop: 'auto'}}>{score1}</h3>
