@@ -132,8 +132,8 @@ const SearchBar = () => (
         <textarea id="questionField" type="text" placeholder="Ask for advice..." cols="40" rows="5"></textarea>
         <button id="subButton" className='submit-button' type="submit" onClick={getVal} style={{marginBottom:'2%'}}>Submit</button>
         <div style={{display: 'flex', marginTop: '50px', fontWeight: 'bold', fontSize: '25px'}}>
-          <div style={{marginLeft: '135px', marginRight: '265px'}}>Advice #1:</div>
-          <div style={{marginRight: '260px'}}>Advice #2:</div>
+          <div style={{marginLeft: '12%', marginRight: '22%'}}>Advice #1:</div>
+          <div style={{marginRight: '22%'}}>Advice #2:</div>
           <div style={{}}>Advice #3:</div>
         </div>
         <div style={{display: 'flex', marginTop: '20px'}}>
@@ -152,8 +152,8 @@ const SearchBar = () => (
         </div>
 
         <div style={{display: 'flex', marginTop: '50px', fontWeight: 'bold', fontSize: '25px'}}>
-          <div style={{marginLeft: '135px', marginRight: '265px'}}>Advice #4:</div>
-          <div style={{marginRight: '260px'}}>Advice #5:</div>
+          <div style={{marginLeft: '12%', marginRight: '22%'}}>Advice #4:</div>
+          <div style={{marginRight: '22%'}}>Advice #5:</div>
           <div style={{}}>Advice #6:</div>
         </div>
         <div style={{display: 'flex', marginTop: '20px'}}>
