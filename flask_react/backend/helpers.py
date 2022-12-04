@@ -15,6 +15,7 @@ import json
 import requests
 import numpy
 from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
+from better_profanity import profanity
 
 
 API_URL = "https://api-inference.huggingface.co/models/sentence-transformers/all-MiniLM-L6-v2"
@@ -129,12 +130,12 @@ def search_reddit(s):
         if len(post.comments) == 1 or len(post.comments) == 2:
             base = post.comments[-1]
             pol_score = sia.polarity_scores(base.body)
-            comments.append({'post' : post.title, 'text': base.body, 'score': base.score, 'sen_score': pol_score})
+            comments.append(profanity.censor({'post' : post.title, 'text': profanity.censor(str(base.body)), 'score': base.score, 'sen_score': pol_score}))
             continue
         else:
             base = post.comments[1]
         pol_score = sia.polarity_scores(base.body)
-        comments.append({'post' : post.title, 'text': base.body, 'score': base.score, 'sen_score': pol_score})
+        comments.append(profanity.censor({'post' : post.title, 'text': profanity.censor(str(base.body)), 'score': base.score, 'sen_score': pol_score}))
         other_comments = []
         score = []
         for comment in post.comments[2:]:
@@ -143,11 +144,11 @@ def search_reddit(s):
         sim = similarity(base.body, other_comments)
         second = other_comments[numpy.argmin(sim)]
         pol_score = sia.polarity_scores(second)
-        comments.append({'post' : post.title, 'text': second, 'score': score[numpy.argmin(sim)], 'sen_score': pol_score})
+        comments.append(profanity.censor({'post' : post.title, 'text': profanity.censor(str(second)), 'score': score[numpy.argmin(sim)], 'sen_score': pol_score}))
 
-
+    # for comment in comments:
+    #     comment['text'] = profanity.censor(comment['text'])
     return comments
-
 #inp = input("Ask questions \n")
 
 #print(search_reddit('I am having a toxic relationship. Should I break up?'))
