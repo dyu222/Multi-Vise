@@ -109,14 +109,6 @@ async function getResults(question){
   document.getElementById("res3").innerHTML = res3
   //'Advice #3: ' + res3
   document.getElementById("score3").innerHTML = 'Sentiment Score: ' + score3
-  
-  document.getElementById("res4").innerHTML = res4
-  document.getElementById("score4").innerHTML = 'Sentiment Score: ' + score4
-  document.getElementById("res5").innerHTML = res5
-  document.getElementById("score5").innerHTML = 'Sentiment Score: ' + score5
-  document.getElementById("res6").innerHTML = res6
-  document.getElementById("score6").innerHTML = 'Sentiment Score: ' + score6
-  //document.getElementById("result").setAttribute('results', [])
 }
 
 async function getVal(){
