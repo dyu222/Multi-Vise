@@ -59,7 +59,7 @@ def analyze_posts(question, posts, model, tokenizer):
         similar_advice_score = similarity("You should, would, could, do this", comments_text)
         filtered_comments = []
         for i in range(len(comments)):
-            if similar_advice_score[i] > 0.07:
+            if similar_advice_score[i] > 0.07 and len(comments[i]["text"])<=150:
                 filtered_comments.append(comments[i])
         
         if len(filtered_comments) == 1:
