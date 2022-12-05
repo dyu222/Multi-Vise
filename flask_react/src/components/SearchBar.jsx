@@ -150,26 +150,6 @@ const SearchBar = () => (
             <h3 id="score3" style={{margin:'0.25%', fontWeight:'200', marginTop: 'auto'}}>{score3}</h3>
           </div>
         </div>
-
-        <div style={{display: 'flex', marginTop: '50px', fontWeight: 'bold', fontSize: '25px'}}>
-          <div style={{marginLeft: '12%', marginRight: '22%'}}>Advice #4:</div>
-          <div style={{marginRight: '22%'}}>Advice #5:</div>
-          <div style={{}}>Advice #6:</div>
-        </div>
-        <div style={{display: 'flex', marginTop: '20px'}}>
-          <div style={{display:'flex', flexDirection:'column', border:'2px solid black', width:'30%', marginLeft:'2%', marginRight:'2%',marginBottom:'2%'}}>
-            <h1 id="res4" style={{margin:'0.25%', fontWeight:'400'}}>No Advice Loaded{res1}</h1>
-            <h3 id="score4" style={{margin:'0.25%', fontWeight:'200', marginTop: 'auto'}}>{score1}</h3>
-          </div>
-          <div style={{display:'flex', flexDirection:'column', border:'2px solid black', width:'30%', marginLeft:'2%', marginRight:'2%',marginBottom:'2%'}}>
-            <h1 id="res5" style={{margin:'0.25%', fontWeight:'400'}}>No Advice Loaded{res2}</h1>
-            <h3 id="score5" style={{margin:'0.25%', fontWeight:'200', marginTop: 'auto'}}>{score2}</h3>
-          </div>
-          <div style={{display:'flex', flexDirection:'column', border:'2px solid black', width:'30%', marginLeft:'2%', marginRight:'2%',marginBottom:'2%'}}>
-            <h1 id="res6" style={{margin:'0.25%', fontWeight:'400'}}>No Advice Loaded{res3}</h1>
-            <h3 id="score6" style={{margin:'0.25%', fontWeight:'200', marginTop: 'auto'}}>{score3}</h3>
-          </div>
-        </div>
     </div>
 
 );
