@@ -75,7 +75,9 @@ def analyze_posts(question, posts, model, tokenizer):
             second = numpy.argmin(sim) + 1 
             pol_score = sia.polarity_scores(filtered_comments[second]['text'])
             advice.append({'post' : post['title'], 'text': filtered_comments[second]['text'], 'score': filtered_comments[second]['score'], 'sen_score': pol_score})
-    
+    for comment in advice:
+        censor_text = profanity.censor(comment['text'])
+        comment['text'] = censor_text
     print(advice)
     return advice
             
@@ -146,9 +148,7 @@ def search_reddit(s):
         pol_score = sia.polarity_scores(second)
         comments.append(profanity.censor({'post' : post.title, 'text': profanity.censor(str(second)), 'score': score[numpy.argmin(sim)], 'sen_score': pol_score}))
 
-    # for comment in comments:
-    #     comment['text'] = profanity.censor(comment['text'])
-    return comments
+    return profanity.censor(comments)
 #inp = input("Ask questions \n")
 
 #print(search_reddit('I am having a toxic relationship. Should I break up?'))
